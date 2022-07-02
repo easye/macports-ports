@@ -8,7 +8,7 @@ name            sbcl
 #
 # Please bump the revision of math/maxima (and when it exists
 # math/maxima-devel) when this port changes.
-version         2.2.5
+version         2.2.6
 revision        0
 
 categories      lang
@@ -32,17 +32,21 @@ master_sites    sourceforge:project/sbcl/sbcl/${version}:sbcl
 
 use_bzip2       yes
 
+depends_build   port:zstd
+
 patchfiles \
     patch-contrib-sb-posix-posix-tests.lisp.diff \
-    patch-sbcl-realtime.diff 
+    patch-sbcl-realtime.diff \
+    patch-src-runtime-Config.arm64-darwin.patch \
+    patch-src-runtime-Config.x86-64-darwin.patch
 
 distfiles       ${name}-${version}-source${extract.suffix}:sbcl
 worksrcdir      ${name}-${version}
 
 checksums       ${name}-${version}-source${extract.suffix} \
-    rmd160  55225af6c20d39db1b158b7c07685ff6e3a8d5bf \
-    sha256  8584b541370fd6ad6e58d3f97982077dfcab240f30d4e9b18f15da91c2f13ed1 \
-    size    7029912 
+    rmd160  e56639fa715cc3b0dac82be5f68d5ba95a937a86 \
+    sha256  3e23048c8fa826fb913220beb2ac3697dbc5c0cdf2e89fed8db39ed1712304a0 \
+    size    7128448 
 
 # Since SBCL is written in lisp, it requires a running lisp binary to
 # bootstrap from.
@@ -102,6 +106,9 @@ post-patch {
     if {[vercmp "8.0" ${xcodeversion}] >= 0} {
         reinplace "s|0x100000|0x100000 -Wl,-no_pie|g" ${worksrcpath}/src/runtime/Config.x86-64-darwin
     }
+    reinplace -W ${worksrcpath}/src/runtime \
+       "s|%%%PREFIX%%%|${prefix}|g" \
+        Config.arm64-darwin Config.x86-64-darwin
 }
 
 use_configure   no
