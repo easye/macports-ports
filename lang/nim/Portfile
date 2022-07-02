@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                nim
-version             1.6.4
+version             1.6.6
 revision            0
 license             MIT
 categories          lang
@@ -22,13 +22,14 @@ long_description    Nim is a statically typed compiled systems programming \
 homepage            https://nim-lang.org
 
 master_sites        ${homepage}/download/
-checksums           rmd160  947ab5f1aa77c60736a7156c6a780b11e00cf1f7 \
-                    sha256  dfa3b31fadca358a7cd1ffbe3d9eab10b0fe62c98223d7bb7d3282dc0317f661 \
-                    size    182708543
+checksums           rmd160  be8ba766648532b24d0e466fd02bc0365f71414f \
+                    sha256  c7e6f27990bf93b236466f206abc7baa3e0f09d95fdb4501c76e8a179c53b090 \
+                    size    182847773
 
 use_configure       no
 
-patchfiles          patch-install.sh-1.6.4-shellquoting.diff
+#patchfiles          patch-install.sh-1.6.4-shellquoting.diff
+patchfiles          patch-install.sh-1.6.6-shellquoting.diff
 
 variant doc description {Build HTML docs} {}
 
