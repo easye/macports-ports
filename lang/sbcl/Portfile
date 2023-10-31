@@ -136,10 +136,10 @@ build.args-append \
 # See: https://trac.macports.org/ticket/68271
 if {${os.major} >= 23} {
     depends_build-append \
-                path:bin/ecl:ecl-devel
+                path:bin/abcl:abcl-devel
 
     build.args-append \
-                --xc-host=${prefix}/bin/ecl
+                --xc-host=${prefix}/bin/abcl
 } else {
     depends_build-append \
                 port:sbcl-bootstrap
