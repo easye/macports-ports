@@ -1,0 +1,26 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github  1.0
+PortGroup           cmake   1.1
+
+description          \
+    WABT (pronounced \"wabbit\") is a suite of tools for WebAssembly
+
+github.setup        WebAssembly wabt 1.0.36 
+github.tarball_from archive
+distname            ${github.version}
+revision            0
+
+checksums           rmd160  187f0a853a560d8071647ae50ac444ee1cd3ea52 \
+                    sha256  e07ceeecfc682c12157ff2738b8a4633d7d19da18c1ecf16daae700397ecce2c \
+                    size    1291640
+
+
+categories          lang devel
+installs_libs       no
+
+configure.args-append -DBUILD_TESTS=OFF
+
+
+
